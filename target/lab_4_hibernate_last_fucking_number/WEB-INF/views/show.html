@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+</head>
+<body>
+<p th:text="${'Id: ' + coffeeMachine.getId() + ', ' + 'name of the drink: ' +
+coffeeMachine.getNameOfTheDrink()}">VALUE</p>
+<p th:text="${'Sort of coffee: ' + coffeeMachine.getSortOfCoffee() + ', ' + 'kind of milk: ' +
+coffeeMachine.getKindOfMilk()}">VALUE</p>
+<p th:text="${'Amount of drink: ' + coffeeMachine.getAmountOfDrink() + ', ' + 'amount of coffee: ' +
+coffeeMachine.getAmountOfCoffee()}">VALUE</p>
+
+
+<form th:method="GET" th:action="@{/coffeeMachine/index/{id}/edit(id=${coffeeMachine.getId()})}">
+    <input type="submit" value="Upgrade"/>
+</form>
+<br>
+<form th:method="DELETE" th:action="@{/coffeeMachine/index/{id}/delete(id=${coffeeMachine.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+<br>
+<form th:method="GET" th:action="@{/coffeeMachine/index}">
+    <input type="submit" value="Go back"/>
+</form>
+</body>
+</html>

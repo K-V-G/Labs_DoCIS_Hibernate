@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Your drinks: </h2>
+<div th:each="coffee : ${coffeeMachine}">
+    <a th:href="@{/coffeeMachine/index/{id}(id=${coffee.getId()})}"
+       th:text="${coffee.getId() + ', ' + coffee.getNameOfTheDrink()}">user</a>
+</div>
+
+<br/>
+<form th:method="GET" th:action="@{/coffeeMachine}">
+    <input type="submit" value="Go back"/>
+</form>
+<br/>
+<hr/>
+</body>
+</html>
