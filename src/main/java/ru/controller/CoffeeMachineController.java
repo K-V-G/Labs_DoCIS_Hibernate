@@ -1,11 +1,19 @@
 package ru.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.models.UserInfo;
+import ru.models.UserProfile;
 import ru.models.coffeeMachine;
+import ru.service.UserProfileService;
+import ru.service.UserService;
 import ru.service.coffeeMachineService;
 
 import javax.validation.Valid;
@@ -13,31 +21,57 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/coffeeMachine")
 public class CoffeeMachineController {
 
     @Autowired
     private coffeeMachineService coffeeMachineService;
 
-    @GetMapping()
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    UserProfileService userProfileService;
+
+    @Autowired
+    PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
+
+    @Autowired
+    AuthenticationTrustResolver authenticationTrustResolver;
+
+    @GetMapping("/login")
+    public String welcomePage(){
+        return "loginPage";
+    }
+    @GetMapping("/registration")
+    public String registrationPage(@ModelAttribute("user") UserInfo userInfo) {
+        return "registrationPage";
+    }
+
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    public String saveUser(@ModelAttribute("user") @Valid UserInfo user, BindingResult result) {
+        userService.saveUser(user);
+        return "redirect:/login";
+    }
+
+    @GetMapping("/coffeeMachine/mainPage")
     public String main(){
         return "main";
     }
 
-    @GetMapping("/index")
+    @GetMapping("/coffeeMachine/index")
     public String listCoffeeMachine(Model model) {
         List<coffeeMachine> coffeeMachineList = coffeeMachineService.findAll();
         model.addAttribute("coffeeMachine", coffeeMachineList);
         return "index";
     }
-    @GetMapping("/indexRequest")
+    @GetMapping("/coffeeMachine/indexRequest")
     public String listCoffeeMachineIndexRequest(Model model) {
         List<coffeeMachine> coffeeMachineList = coffeeMachineService.findAllReqest();
         model.addAttribute("coffeeMachine", coffeeMachineList);
         return "indexReqest";
     }
 
-    @GetMapping("/index/{id}")
+    @GetMapping("/coffeeMachine/index/{id}")
     public String showOneCoffeeMachine(@PathVariable("id") int id, Model model) {
         coffeeMachine coffeeMachine = coffeeMachineService.getCoffeeMachine(id);
         model.addAttribute("coffeeMachine", coffeeMachine);
@@ -45,7 +79,7 @@ public class CoffeeMachineController {
     }
 
 
-    @GetMapping("/new")
+    @GetMapping("/coffeeMachine/new")
     public String saveCoffeeMachine(@ModelAttribute("coffeeMachine") coffeeMachine coffeeMachine){
         return "new";
     }
@@ -60,13 +94,13 @@ public class CoffeeMachineController {
         return "redirect:/coffeeMachine";
     }
 
-    @GetMapping("/index/{id}/edit")
+    @GetMapping("/coffeeMachine/index/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         coffeeMachine coffeeMachine = coffeeMachineService.getCoffeeMachine(id);
         model.addAttribute("coffeeMachine", coffeeMachine);
         return "edit";
     }
-    @RequestMapping(value = "/index/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/coffeeMachine/index/{id}", method = RequestMethod.POST)
     public String update(@ModelAttribute("coffeeMachine") @Valid coffeeMachine coffeeMachine,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -76,7 +110,7 @@ public class CoffeeMachineController {
         return "redirect:/coffeeMachine";
     }
 
-    @RequestMapping(value = "/index/{id}/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/coffeeMachine/index/{id}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable("id") int id) {
         coffeeMachineService.deleteCoffeeMachine(id);
         return "redirect:/coffeeMachine";

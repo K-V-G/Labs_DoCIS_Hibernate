@@ -6,7 +6,7 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {JPAConfig.class};
+        return new Class[] {JPAConfig.class, SecurityConfig.class};
     }
 
     @Override
