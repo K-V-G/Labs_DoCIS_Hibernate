@@ -4,7 +4,6 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 
 import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ru.models.PersistentLogin;

@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().antMatchers("/coffeeMachine/mainPage")
+        httpSecurity.authorizeRequests().antMatchers("/coffeeMachine/mainPage", "/coffeeMachine/index")
                 .access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
                 .antMatchers("/coffeeMachine/new*").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/coffeeMachine/index/*/edit").access("hasRole('ROLE_ADMIN')")

@@ -1,10 +1,7 @@
 package ru.repository;
 
-import org.hibernate.Criteria;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.loader.custom.sql.SQLQueryParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.models.coffeeMachine;

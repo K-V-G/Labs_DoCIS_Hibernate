@@ -49,7 +49,7 @@ public class CoffeeMachineController {
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String saveUser(@ModelAttribute("user") @Valid UserInfo user, BindingResult result) {
+    public String saveUser(@ModelAttribute("user") @Valid UserInfo user) {
         userService.saveUser(user);
         return "redirect:/login";
     }

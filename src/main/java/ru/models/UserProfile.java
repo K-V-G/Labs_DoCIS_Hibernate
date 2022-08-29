@@ -11,7 +11,7 @@ public class UserProfile {
     private Integer id;
 
     @Column(name = "type", length = 15, unique = true, nullable = false)
-    private String type = UserProfileType.USER.getUserProfileType();
+    private String type;
 
     public Integer getId() {
         return id;
@@ -53,10 +53,7 @@ public class UserProfile {
         } else if (!id.equals(other.id))
             return false;
         if (type == null) {
-            if (other.type != null)
-                return false;
-        } else if (!type.equals(other.type))
-            return false;
-        return true;
+            return other.type == null;
+        } else return type.equals(other.type);
     }
 }
