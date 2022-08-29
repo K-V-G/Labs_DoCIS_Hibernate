@@ -22,12 +22,11 @@ public class UserInfo implements Serializable {
     @Column(name = "password", unique = true, nullable = false)
     private String password;
 
-    @NotEmpty
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinTable(name = "useruserprofile",
             joinColumns = { @JoinColumn(name = "user_id")},
             inverseJoinColumns = { @JoinColumn(name ="user_profile_id")})
-    private Set<UserProfile> userProfiles = new HashSet<>();
+    private UserProfile userProfiles;
 
     public Integer getId() {
         return id;
@@ -53,11 +52,11 @@ public class UserInfo implements Serializable {
         this.password = password;
     }
 
-    public Set<UserProfile> getUserProfiles() {
+    public UserProfile getUserProfiles() {
         return userProfiles;
     }
 
-    public void setUserProfiles(Set<UserProfile> userProfiles) {
+    public void setUserProfiles(UserProfile userProfiles) {
         this.userProfiles = userProfiles;
     }
 

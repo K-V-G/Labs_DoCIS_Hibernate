@@ -2,24 +2,25 @@ package ru.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.models.UserInfo;
-import ru.models.UserProfile;
 import ru.models.coffeeMachine;
 import ru.service.UserProfileService;
 import ru.service.UserService;
 import ru.service.coffeeMachineService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
-
+@SessionAttributes("roles")
 @Controller
 public class CoffeeMachineController {
 
@@ -78,20 +79,19 @@ public class CoffeeMachineController {
         return "show";
     }
 
-
     @GetMapping("/coffeeMachine/new")
     public String saveCoffeeMachine(@ModelAttribute("coffeeMachine") coffeeMachine coffeeMachine){
         return "new";
     }
 
-    @PostMapping()
+    @RequestMapping(value = "/coffeeMachine/mainPage", method = RequestMethod.POST)
     public String create(@ModelAttribute("coffeeMachine") @Valid coffeeMachine coffeeMachine,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "new";
 
         coffeeMachineService.saveCoffeeMachine(coffeeMachine);
-        return "redirect:/coffeeMachine";
+        return "redirect:/coffeeMachine/mainPage";
     }
 
     @GetMapping("/coffeeMachine/index/{id}/edit")
@@ -107,13 +107,29 @@ public class CoffeeMachineController {
             return "edit";
 
         coffeeMachineService.saveCoffeeMachine(coffeeMachine);
-        return "redirect:/coffeeMachine";
+        return "redirect:/coffeeMachine/mainPage";
     }
 
     @RequestMapping(value = "/coffeeMachine/index/{id}/delete", method = RequestMethod.POST)
     public String delete(@PathVariable("id") int id) {
         coffeeMachineService.deleteCoffeeMachine(id);
-        return "redirect:/coffeeMachine";
+        return "redirect:/coffeeMachine/mainPage";
     }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            persistentTokenBasedRememberMeServices.logout(request, response, authentication);
+            SecurityContextHolder.getContext().setAuthentication(null);
+        }
+        return "redirect:/login?logout";
+    }
+
+    @RequestMapping(value = "/accessDenied", method = RequestMethod.GET)
+    public String accessDenied() {
+        return "accessDenied";
+    }
+
 }
 

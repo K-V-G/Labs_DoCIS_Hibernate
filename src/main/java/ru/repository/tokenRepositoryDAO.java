@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Repository
 @Transactional
-public class tokenRepositoryDAO extends AbstractDAO<String, PersistentLogin> implements PersistentTokenRepository {
+public class tokenRepositoryDAO extends AbstractDAO<String, PersistentLogin> implements tokenRepositoryDAOInterf {
     @Override
     public void createNewToken(PersistentRememberMeToken persistentRememberMeToken) {
         PersistentLogin persistentLogin = new PersistentLogin();

@@ -13,7 +13,7 @@
 </head>
 <body style="margin: 20px; border: 4px dashed black;">
 
-<form th:method="POST" th:action="@{/coffeeMachine}" th:object="${coffeeMachine}">
+<form th:method="POST" th:action="@{/coffeeMachine/mainPage}" th:object="${coffeeMachine}">
     <label for="id">Enter id of the drink: </label>
     <input type="text" th:field="*{id}" id="id"/>
     <div style="color:red" th:if="${#fields.hasErrors('id')}" th:errors="*{nameOfTheDrink}">Name Error</div>
@@ -41,7 +41,7 @@
     <input type="submit" value="Create!"/>
 </form>
 <br />
-<form th:method="GET" th:action="@{/coffeeMachine}">
+<form th:method="GET" th:action="@{/coffeeMachine/mainPage}">
     <input type="submit" value="Go back"/>
 </form>
 </body>

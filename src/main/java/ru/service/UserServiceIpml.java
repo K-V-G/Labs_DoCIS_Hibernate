@@ -6,14 +6,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.models.UserInfo;
+import ru.models.UserProfile;
 import ru.repository.UserDAOImpl;
 
 import java.util.List;
+import java.util.Set;
+
 @Service
 @Transactional
 public class UserServiceIpml implements UserService {
     @Autowired
     private UserDAOImpl userDAO;
+
+    @Autowired
+    private UserProfileService userProfileService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -31,6 +37,7 @@ public class UserServiceIpml implements UserService {
     @Override
     public void saveUser(UserInfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+        userInfo.setUserProfiles(userProfileService.findByType("USER"));
         userDAO.save(userInfo);
     }
 

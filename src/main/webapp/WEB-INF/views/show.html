@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Show</title>
@@ -13,11 +14,11 @@ coffeeMachine.getKindOfMilk()}">VALUE</p>
 coffeeMachine.getAmountOfCoffee()}">VALUE</p>
 
 
-<form th:method="GET" th:action="@{/coffeeMachine/index/{id}/edit(id=${coffeeMachine.getId()})}">
+<form sec:authorize="hasRole('ROLE_ADMIN')" th:method="GET" th:action="@{/coffeeMachine/index/{id}/edit(id=${coffeeMachine.getId()})}">
     <input type="submit" value="Upgrade"/>
 </form>
 <br>
-<form th:method="DELETE" th:action="@{/coffeeMachine/index/{id}/delete(id=${coffeeMachine.getId()})}">
+<form sec:authorize="hasRole('ROLE_ADMIN')" th:method="DELETE" th:action="@{/coffeeMachine/index/{id}/delete(id=${coffeeMachine.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 <br>

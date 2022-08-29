@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <span>Dear <strong th:inline="text">[[${#httpServletRequest.remoteUser}]] </strong>,
+        You are not authorized to access this page.</span>
+    <form th:method="GET" th:action="@{/coffeeMachine/mainPage}">
+    <input type="submit" value="Go back"/>
+    </form>
+</div>
+</body>
+</html>

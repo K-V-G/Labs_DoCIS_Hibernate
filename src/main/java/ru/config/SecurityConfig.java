@@ -13,8 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import ru.repository.tokenRepositoryDAOInterf;
 import ru.service.UserDetailServiceInt;
 
 
@@ -27,15 +27,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailServiceInt customUserDetailService;
 
     @Autowired
-    PersistentTokenRepository tokenRepository;
+    tokenRepositoryDAOInterf tokenRepository;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests().antMatchers("/coffeeMachine/mainPage")
-                .access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')").and().formLogin().loginPage("/login")
+                .access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .antMatchers("/coffeeMachine/new*").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/coffeeMachine/index/*/edit").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/coffeeMachine/index/*/delete").access("hasRole('ROLE_ADMIN')")
+                .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/login").usernameParameter("username").passwordParameter("password").and()
                 .rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository)
-                .tokenValiditySeconds(86400).and().csrf().and().exceptionHandling().accessDeniedPage("/accessDenied");
+                .tokenValiditySeconds(86400).and().csrf().and().exceptionHandling()
+                .accessDeniedPage("/accessDenied");
         httpSecurity.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 

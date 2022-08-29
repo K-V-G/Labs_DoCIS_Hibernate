@@ -6,7 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.models.UserProfile;
 import ru.repository.UserProfileDAO;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Service
 @Transactional
 public class UserProfileServiceIplm implements UserProfileService{
@@ -24,10 +27,6 @@ public class UserProfileServiceIplm implements UserProfileService{
         return userProfileDAO.findByType(type);
     }
 
-    @Override
-    public List<UserProfile> findByTypeUser(String type) {
-        return userProfileDAO.findByTypeUser(type);
-    }
 
     @Override
     public List<UserProfile> findAll() {
