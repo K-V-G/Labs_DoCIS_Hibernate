@@ -5,10 +5,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "coffeeMachine4")
+@Table(name = "coffee_machine")
 public class coffeeMachine {
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "nameofthedrink")
@@ -26,6 +27,14 @@ public class coffeeMachine {
 
     public coffeeMachine() {
 
+    }
+
+    public coffeeMachine(String nameOfTheDrink, String sortOfCoffee, String kindOfMilk, double amountOfDrink, int amountOfCoffee) {
+        this.nameOfTheDrink = nameOfTheDrink;
+        this.sortOfCoffee = sortOfCoffee;
+        this.kindOfMilk = kindOfMilk;
+        this.amountOfDrink = amountOfDrink;
+        this.amountOfCoffee = amountOfCoffee;
     }
 
     public int getId() {

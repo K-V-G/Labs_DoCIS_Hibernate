@@ -1,3 +1,4 @@
+/*
 package ru.repository;
 
 import org.hibernate.Criteria;
@@ -55,3 +56,4 @@ public class tokenRepositoryDAO extends AbstractDAO<String, PersistentLogin> imp
         }
      }
 }
+*/

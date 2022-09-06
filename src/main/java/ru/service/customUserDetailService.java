@@ -1,3 +1,4 @@
+/*
 package ru.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,3 +38,4 @@ public class customUserDetailService implements UserDetailServiceInt {
         return authorities;
     }
 }
+*/

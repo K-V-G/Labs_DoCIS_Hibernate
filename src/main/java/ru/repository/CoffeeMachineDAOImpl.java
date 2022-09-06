@@ -46,6 +46,7 @@ public class CoffeeMachineDAOImpl implements coffeeMachineDAO{
         return result;
     }
 
+
     @Override
     public coffeeMachine getCoffeeMachine(int id) {
         Session session = sessionFactory.getCurrentSession();

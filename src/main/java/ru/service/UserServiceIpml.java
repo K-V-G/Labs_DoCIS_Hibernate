@@ -1,3 +1,4 @@
+/*
 package ru.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,3 +32,4 @@ public class UserServiceIpml implements UserService {
         userDAO.save(userInfo);
     }
 }
+*/

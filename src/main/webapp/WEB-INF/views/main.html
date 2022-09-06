@@ -10,7 +10,7 @@
 <h1 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]] </h1>
 <h2>Actions you can perform:</h2>
 <ul>
-    <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/coffeeMachine/new">Create new drink</a></li>
+    <li><!--sec:authorize="hasRole('ROLE_ADMIN')"--><a href="/coffeeMachine/new">Create new drink</a></li>
     <li><a href="/coffeeMachine/index">Show all drinks</a></li>
     <li><a href="/coffeeMachine/indexRequest">Show request drinks (sortOfCoffee = 'arabica' OR
         sortOfCoffee = 'Arabica' AND kindOfMilk = 'soy milk' OR kindOfMilk = 'Soy milk'
@@ -19,6 +19,6 @@
 <p sec:authorize="hasRole('ROLE_ADMIN')">
     The Update and Delete functions can be found inside the object references in Show All Drinks
 </p>
-<a href="/logout">Logout</a>
+<!--<a href="/logout">Logout</a>-->
 </body>
 </html>

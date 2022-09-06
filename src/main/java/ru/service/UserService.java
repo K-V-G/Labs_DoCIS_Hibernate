@@ -1,3 +1,4 @@
+/*
 package ru.service;
 
 import ru.models.UserInfo;
@@ -9,3 +10,4 @@ public interface UserService {
 
     void saveUser(UserInfo userInfo);
 }
+*/

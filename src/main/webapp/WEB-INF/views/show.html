@@ -14,11 +14,11 @@ coffeeMachine.getKindOfMilk()}">VALUE</p>
 coffeeMachine.getAmountOfCoffee()}">VALUE</p>
 
 
-<form sec:authorize="hasRole('ROLE_ADMIN')" th:method="GET" th:action="@{/coffeeMachine/index/{id}/edit(id=${coffeeMachine.getId()})}">
+<form th:method="GET" th:action="@{/coffeeMachine/index/{id}/edit(id=${coffeeMachine.getId()})}">
     <input type="submit" value="Upgrade"/>
 </form>
 <br>
-<form sec:authorize="hasRole('ROLE_ADMIN')" th:method="DELETE" th:action="@{/coffeeMachine/index/{id}/delete(id=${coffeeMachine.getId()})}">
+<form th:method="DELETE" th:action="@{/coffeeMachine/index/{id}/delete(id=${coffeeMachine.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 <br>

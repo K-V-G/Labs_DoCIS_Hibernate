@@ -14,4 +14,5 @@ public interface coffeeMachineDAO {
     void deleteCoffeeMachine(int id);
 
     List<coffeeMachine> findAllReqest();
+
 }

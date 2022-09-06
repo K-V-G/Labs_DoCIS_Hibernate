@@ -14,10 +14,6 @@
 <body style="margin: 20px; border: 4px dashed black;">
 
 <form th:method="POST" th:action="@{/coffeeMachine/mainPage}" th:object="${coffeeMachine}">
-    <label for="id">Enter id of the drink: </label>
-    <input type="text" th:field="*{id}" id="id"/>
-    <div style="color:red" th:if="${#fields.hasErrors('id')}" th:errors="*{nameOfTheDrink}">Name Error</div>
-    <br><br>
     <label for="nameOfTheDrink">Enter name of the drink: </label>
     <input type="text" th:field="*{nameOfTheDrink}" id="nameOfTheDrink"/>
     <div style="color:red" th:if="${#fields.hasErrors('nameOfTheDrink')}" th:errors="*{nameOfTheDrink}">Name Error</div>

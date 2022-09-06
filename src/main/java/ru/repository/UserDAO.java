@@ -1,3 +1,4 @@
+/*
 package ru.repository;
 
 import ru.models.UserInfo;
@@ -15,3 +16,4 @@ public interface UserDAO {
 
     List<UserInfo> findAllUsers();
 }
+*/

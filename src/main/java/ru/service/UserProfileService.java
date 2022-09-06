@@ -1,3 +1,4 @@
+/*
 package ru.service;
 import ru.models.UserProfile;
 
@@ -10,3 +11,4 @@ public interface UserProfileService {
     List<UserProfile> findAll();
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package ru.models;
 
 import javax.persistence.*;
@@ -52,3 +53,4 @@ public class PersistentLogin implements Serializable {
         this.lastUsed = lastUsed;
     }
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package ru.models;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -86,3 +87,4 @@ public class UserInfo implements Serializable {
         } else return username.equals(other.username);
     }
 }
+*/

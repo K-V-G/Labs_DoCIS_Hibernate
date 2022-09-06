@@ -14,4 +14,6 @@ public interface coffeeMachineService {
     void deleteCoffeeMachine(int id);
 
     List<coffeeMachine> findAllReqest();
+
+
 }

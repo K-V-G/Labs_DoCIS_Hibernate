@@ -1,3 +1,4 @@
+/*
 package ru.repository;
 
 import org.hibernate.Criteria;
@@ -26,3 +27,4 @@ public class UserProfileDAOIpml extends AbstractDAO<Integer, UserProfile> implem
         return (UserProfile) criteria.uniqueResult();
     }
 }
+*/

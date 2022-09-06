@@ -1,3 +1,4 @@
+/*
 package ru.models;
 
 import javax.persistence.*;
@@ -57,3 +58,4 @@ public class UserProfile {
         } else return type.equals(other.type);
     }
 }
+*/

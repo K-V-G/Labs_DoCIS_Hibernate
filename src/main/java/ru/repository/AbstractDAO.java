@@ -1,3 +1,4 @@
+/*
 package ru.repository;
 
 import org.hibernate.Criteria;
@@ -47,3 +48,4 @@ public abstract class AbstractDAO<PK extends Serializable, T> {
     }
 
 }
+*/

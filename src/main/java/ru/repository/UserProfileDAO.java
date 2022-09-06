@@ -1,3 +1,4 @@
+/*
 package ru.repository;
 
 import ru.models.UserProfile;
@@ -10,3 +11,4 @@ public interface UserProfileDAO {
     UserProfile findByType(String type);
 
 }
+*/

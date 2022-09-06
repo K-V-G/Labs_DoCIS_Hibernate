@@ -1,3 +1,4 @@
+/*
 package ru.repository;
 
 import org.hibernate.Criteria;
@@ -52,3 +53,4 @@ public class UserDAOImpl extends AbstractDAO<Integer, UserInfo> implements UserD
         return (List<UserInfo>) criteria.list();
     }
 }
+*/
