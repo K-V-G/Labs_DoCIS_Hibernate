@@ -39,7 +39,7 @@ public class CoffeeMachineDAOImpl implements coffeeMachineDAO{
     @Override
     public List<coffeeMachine> findAllReqest() {
         Session session = sessionFactory.openSession();
-        List result = session.createSQLQuery("SELECT * FROM coffeeMachine4 WHERE sortOfCoffee = 'arabica' OR " +
+        List result = session.createSQLQuery("SELECT * FROM coffee_machine WHERE sortOfCoffee = 'arabica' OR " +
                         "sortOfCoffee = 'Arabica' AND kindOfMilk = 'soy milk' OR kindOfMilk = 'Soy milk' " +
                         "AND amountOfDrink >= 0.5 AND amountOfDrink <=1.0")
                 .addEntity(coffeeMachine.class).list();

@@ -88,6 +88,13 @@ public class CoffeeMachineController {
         return "show";
     }
 
+    @GetMapping("coffeeMachine/indexRequest/{id}")
+    public String showOneCoffeeMachineReq(@PathVariable("id") int id, Model model) {
+        coffeeMachine coffeeMachine = coffeeMachineService.getCoffeeMachine(id);
+        model.addAttribute("coffeeMachine", coffeeMachine);
+        return "show";
+    }
+
     @GetMapping("/coffeeMachine/new")
     public String saveCoffeeMachine(@ModelAttribute("coffeeMachine") coffeeMachine coffeeMachine) {
         return "new";
